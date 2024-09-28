@@ -47,7 +47,6 @@ def generate_product_descriptions(products):
                 quantity=product["quantity"]
             )
             
-            # Call the Groq API to get the response
             response = groq_api.query(prompt)
             
             product["description"] = response.strip() 
@@ -56,7 +55,7 @@ def generate_product_descriptions(products):
             logger.error(f"Error generating description for {product['name']}: {str(e)}")
 
 def compute_embeddings(products):
-    model = SentenceTransformer('all-MiniLM-L6-v2')  # Load a pre-trained model for embeddings
+    model = SentenceTransformer('all-MiniLM-L6-v2')  
     for product in products:
         description = product.get("description")
         if description:

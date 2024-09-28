@@ -1,0 +1,26 @@
+# Ignore Python cache files and directories
+__pycache__/
+*.py[cod]
+
+# Ignore environment variable files
+.env
+.env.local
+
+# Ignore virtual environment directories
+env/
+.venv/
+
+# Ignore Python egg files and info
+*.egg
+*.egg-info/
+
+# Ignore IDE and editor-specific files
+.vscode/
+.idea/
+
+# Ignore log and temporary files
+*.log
+*.tmp
+
+# Ignore macOS system files
+.DS_Store
