@@ -5,120 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Similarity Search</title>
-    <style>
-        /* static/css/styles.css */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-}
-
-h1 {
-    background-color: #4CAF50;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    margin: 0;
-    border-bottom: 2px solid #388E3C;
-}
-
-form {
-    padding: 20px;
-    background-color: white;
-    max-width: 600px;
-    margin: 20px auto;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-label {
-    font-weight: bold;
-    margin-top: 10px;
-    display: block;
-}
-
-select, input[type="number"], button {
-    margin: 10px 0;
-    padding: 12px;
-    width: 100%;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    font-size: 16px;
-}
-
-select:focus, input[type="number"]:focus {
-    border-color: #4CAF50;
-    outline: none;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-h2 {
-    color: #333;
-    text-align: center;
-    margin: 20px 0;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-    max-width: 600px;
-    margin: 20px auto;
-}
-
-li {
-    background-color: white;
-    padding: 20px;
-    margin: 10px 0;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
-}
-
-li:hover {
-    transform: translateY(-3px);
-}
-
-li br {
-    margin-bottom: 10px;
-}
-
-p {
-    text-align: center;
-    color: #999;
-    font-style: italic;
-}
-
-/* Responsive Styles */
-@media (max-width: 600px) {
-    form {
-        margin: 10px;
-        padding: 15px;
-    }
-
-    h1 {
-        font-size: 24px;
-    }
-
-    button, select, input[type="number"] {
-        font-size: 14px;
-    }
-}
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <h1>Distinct Product Names</h1>
@@ -130,12 +17,12 @@ p {
             {% endfor %}
         </select>
         
-        <br><br>
+        <br>
         
         <label for="num_products">Enter number of similar products:</label>
         <input type="number" id="num_products" name="num_products" min="1" required>
         
-        <br><br>
+        <br>
         
         <button type="submit">Submit</button>
     </form>
@@ -145,14 +32,15 @@ p {
     <ul>
         {% for product in similar_products %}
         <li>
-            Name: {{ product['name'] }} <br>
-            Type: {{ product['type'] }} <br>
-            Price: {{ product['price'] }} <br>
-            Description: {{ product['description'] }} <br>
-            Store: {{ product['store_name'] }} <br>
-            Similarity Score: {{ product['score'] }}
+            <div class="product-info">
+                <div class="product-name">Name: {{ product['name'] }}</div>
+                <div class="product-type">Type: {{ product['type'] }}</div>
+                <div class="product-price">Price: {{ product['price'] }}</div>
+                <div class="product-description">Description: {{ product['description'] }}</div>
+                <div class="product-store">Store: {{ product['store_name'] }}</div>
+            </div>
+            <div class="product-score">Similarity Score: {{ product['score'] }}</div>
         </li>
-        <br>
         {% endfor %}
     </ul>
     {% else %}
